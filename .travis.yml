@@ -1,9 +1,6 @@
 language: cpp
 
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
+dist: xenial
 
 before_install:
   - pip install --user cpp-coveralls
