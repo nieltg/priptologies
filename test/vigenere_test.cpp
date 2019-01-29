@@ -26,3 +26,11 @@ TEST_F(VigenereTest, encrypt_plain_text_with_length_more_than_key_length_works) 
 TEST_F(VigenereTest, decrypt_empty_plain_text_works) {
   ASSERT_TRUE(cipher_.decrypt("") == "");
 }
+
+TEST_F(VigenereTest, decrypt_key_lengthed_plain_text_works) {
+  ASSERT_TRUE(cipher_.decrypt("\xcc\xc7\xdc") == "abc");
+}
+
+TEST_F(VigenereTest, decrypt_plain_text_with_length_more_than_key_length_works) {
+  ASSERT_TRUE(cipher_.decrypt("\xcc\xc7\xdc\xcc\xc7\xdc") == "abcabc");
+}

@@ -30,6 +30,18 @@ public:
   }
 
   std::basic_string<CharT> decrypt(const std::basic_string<CharT>& _cipher_text) const {
-    return "";
+    std::basic_string<CharT> plain_text;
+
+    auto key_it = key.begin();
+
+    for (CharT ch : _cipher_text) {
+      plain_text.push_back(ch - *key_it);
+
+      if (++key_it == key.end()) {
+        key_it = key.begin();
+      }
+    }
+
+    return plain_text;
   }
 };
