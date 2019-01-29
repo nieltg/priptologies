@@ -14,7 +14,15 @@ public:
     : key(_key) {}
 
   std::basic_string<CharT> encrypt(const std::basic_string<CharT>& _plain_text) const {
-    return "";
+    std::basic_string<CharT> cipher_text;
+
+    auto key_it = key.begin();
+
+    for (CharT ch : _plain_text) {
+      cipher_text.push_back(ch + *key_it++);
+    }
+
+    return cipher_text;
   }
 
   std::basic_string<CharT> decrypt(const std::basic_string<CharT>& _cipher_text) const {
