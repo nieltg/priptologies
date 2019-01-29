@@ -30,3 +30,7 @@ TEST_F(VigenereAutoTest, decrypt_empty_plain_text_works) {
 TEST_F(VigenereAutoTest, decrypt_key_lengthed_plain_text_works) {
   ASSERT_TRUE(cipher_.decrypt("\xcc\xc7\xdc") == "abc");
 }
+
+TEST_F(VigenereAutoTest, decrypt_plain_text_with_length_more_than_key_length_works) {
+  ASSERT_TRUE(cipher_.decrypt("\xcc\xc7\xdc\xc2\xc4\xc6") == "abcabc");
+}

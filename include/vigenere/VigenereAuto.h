@@ -35,7 +35,11 @@ public:
     auto key_it = initial_key.begin();
 
     for (CharT ch : _cipher_text) {
-      plain_text.push_back(ch - *key_it++);
+      plain_text.push_back(ch - *key_it);
+
+      if (++key_it == initial_key.end()) {
+        key_it = plain_text.begin();
+      }
     }
 
     return plain_text;
