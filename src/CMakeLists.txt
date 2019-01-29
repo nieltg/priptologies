@@ -4,5 +4,3 @@ add_executable(
   priptologies
   ${priptologies_SOURCES}
 )
-
-target_link_libraries(priptologies libpriptologies)
