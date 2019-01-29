@@ -3,7 +3,8 @@ language: cpp
 dist: xenial
 addons:
   apt:
-    - libgtest-dev
+    packages:
+      - libgtest-dev
 
 before_install:
   - pip install --user cpp-coveralls
