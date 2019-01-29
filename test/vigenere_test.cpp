@@ -8,7 +8,7 @@
 
 class VigenereTest : public testing::Test {
 protected:
-  Vigenere cipher_ = Vigenere("key");
+  Vigenere<char> cipher_ = Vigenere<char>("key");
 };
 
 TEST_F(VigenereTest, empty_plain_text_works) {

@@ -4,19 +4,20 @@
 
 #include "Cipher.h"
 
-class Vigenere : public Cipher {
+template<typename CharT>
+class Vigenere : public Cipher<CharT> {
 protected:
-  std::string key;
+  std::basic_string<CharT> key;
 
 public:
-  Vigenere(const std::string& _key)
+  Vigenere(const std::basic_string<CharT>& _key)
     : key(_key) {}
 
-  std::string encrypt(const std::string& _plain_text) const {
+  std::basic_string<CharT> encrypt(const std::basic_string<CharT>& _plain_text) const {
     return "";
   }
 
-  std::string decrypt(const std::string& _cipher_text) const {
+  std::basic_string<CharT> decrypt(const std::basic_string<CharT>& _cipher_text) const {
     return "";
   }
 };
