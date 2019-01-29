@@ -2,7 +2,7 @@
  * priptologies by nieltg, Daniel
  */
 
-#include "Cipher.h"
+#include <Cipher.h>
 
 template<typename CharT>
 class Vigenere : public Cipher<CharT> {

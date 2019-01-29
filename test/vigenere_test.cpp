@@ -4,7 +4,7 @@
 
 #include <gtest/gtest.h>
 
-#include <Vigenere.h>
+#include <vigenere/Vigenere.h>
 
 class VigenereTest : public testing::Test {
 protected:
