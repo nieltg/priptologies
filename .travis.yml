@@ -1,5 +1,14 @@
 language: cpp
 
+before_install:
+  - pip install --user cpp-coveralls
+
 script:
-  - mkdir -p build
-  - cd build && cmake .. -G Ninja && ninja && ninja test
+  - mkdir build
+  - cd build
+  - cmake ..
+  - cmake --build .
+  - ctest
+
+after_success:
+  - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*test/.*.cpp.*"
