@@ -3,7 +3,6 @@
  */
 
 #include <stdexcept>
-#include <iostream>
 
 class Alphabet {
 protected:
