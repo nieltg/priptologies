@@ -19,7 +19,11 @@ public:
     auto key_it = key.begin();
 
     for (CharT ch : _plain_text) {
-      cipher_text.push_back(ch + *key_it++);
+      cipher_text.push_back(ch + *key_it);
+
+      if (++key_it == key.end()) {
+        key_it = key.begin();
+      }
     }
 
     return cipher_text;
