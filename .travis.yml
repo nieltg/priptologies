@@ -1,5 +1,10 @@
 language: cpp
 
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+
 before_install:
   - pip install --user cpp-coveralls
 
