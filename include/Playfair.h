@@ -49,6 +49,8 @@ public:
       } else if (a_c == b_c) {
         a_r = (a_r + 1) % C;
         b_r = (b_r + 1) % C;
+      } else {
+        std::swap(a_c, b_c);
       }
 
       cipher_text.push_back(tableau[a_r][a_c]);

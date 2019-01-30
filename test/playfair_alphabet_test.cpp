@@ -39,3 +39,11 @@ TEST_F(PlayfairAlphabetTest, encrypt_single_vertical_bigram_works) {
 TEST_F(PlayfairAlphabetTest, encrypt_single_vertical_wrapped_bigram_works) {
   ASSERT_EQ(cipher_.encrypt(Alphabet::from_string("av")), Alphabet::from_string("fa"));
 }
+
+TEST_F(PlayfairAlphabetTest, encrypt_diagonal_down_bigram_works) {
+  ASSERT_EQ(cipher_.encrypt(Alphabet::from_string("lc")), Alphabet::from_string("na"));
+}
+
+TEST_F(PlayfairAlphabetTest, encrypt_diagonal_up_bigram_works) {
+  ASSERT_EQ(cipher_.encrypt(Alphabet::from_string("cl")), Alphabet::from_string("an"));
+}
