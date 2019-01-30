@@ -61,6 +61,35 @@ public:
   }
 
   std::basic_string<CharT> decrypt(const std::basic_string<CharT>& cipher_text) const {
-    return std::basic_string<CharT>();
+    std::basic_string<CharT> plain_text;
+
+    for (auto it = cipher_text.begin(); it != cipher_text.end(); ) {
+      CharT a, b;
+      a = *it++;
+      b = *it++;
+
+      ptrdiff_t a_r, a_c, b_r, b_c;
+      auto const& a_pair = tableau_index.at(a);
+      a_r = a_pair.first;
+      a_c = a_pair.second;
+      auto const& b_pair = tableau_index.at(b);
+      b_r = b_pair.first;
+      b_c = b_pair.second;
+
+      if (a_r == b_r) {
+        if (--a_c < 0) a_c += C;
+        if (--b_c < 0) b_c += C;
+      } else if (a_c == b_c) {
+        if (--a_r < 0) a_r += C;
+        if (--b_r < 0) b_r += C;
+      } else {
+        std::swap(a_c, b_c);
+      }
+
+      plain_text.push_back(tableau[a_r][a_c]);
+      plain_text.push_back(tableau[b_r][b_c]);
+    }
+
+    return plain_text;
   }
 };

@@ -47,3 +47,31 @@ TEST_F(PlayfairAlphabetTest, encrypt_diagonal_down_bigram_works) {
 TEST_F(PlayfairAlphabetTest, encrypt_diagonal_up_bigram_works) {
   ASSERT_EQ(cipher_.encrypt(Alphabet::from_string("cl")), Alphabet::from_string("an"));
 }
+
+TEST_F(PlayfairAlphabetTest, decrypt_empty_plain_text_works) {
+  ASSERT_EQ(cipher_.decrypt(Alphabet::from_string("")), Alphabet::from_string(""));
+}
+
+TEST_F(PlayfairAlphabetTest, decrypt_single_horizontal_bigram_works) {
+  ASSERT_EQ(cipher_.decrypt(Alphabet::from_string("bc")), Alphabet::from_string("ab"));
+}
+
+TEST_F(PlayfairAlphabetTest, decrypt_single_horizontal_wrapped_bigram_works) {
+  ASSERT_EQ(cipher_.decrypt(Alphabet::from_string("ba")), Alphabet::from_string("ae"));
+}
+
+TEST_F(PlayfairAlphabetTest, decrypt_single_vertical_bigram_works) {
+  ASSERT_EQ(cipher_.decrypt(Alphabet::from_string("fl")), Alphabet::from_string("af"));
+}
+
+TEST_F(PlayfairAlphabetTest, decrypt_single_vertical_wrapped_bigram_works) {
+  ASSERT_EQ(cipher_.decrypt(Alphabet::from_string("fa")), Alphabet::from_string("av"));
+}
+
+TEST_F(PlayfairAlphabetTest, decrypt_diagonal_down_bigram_works) {
+  ASSERT_EQ(cipher_.decrypt(Alphabet::from_string("na")), Alphabet::from_string("lc"));
+}
+
+TEST_F(PlayfairAlphabetTest, decrypt_diagonal_up_bigram_works) {
+  ASSERT_EQ(cipher_.decrypt(Alphabet::from_string("an")), Alphabet::from_string("cl"));
+}
