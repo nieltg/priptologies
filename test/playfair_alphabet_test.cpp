@@ -31,3 +31,11 @@ TEST_F(PlayfairAlphabetTest, encrypt_single_horizontal_bigram_works) {
 TEST_F(PlayfairAlphabetTest, encrypt_single_horizontal_wrapped_bigram_works) {
   ASSERT_EQ(cipher_.encrypt(Alphabet::from_string("ae")), Alphabet::from_string("ba"));
 }
+
+TEST_F(PlayfairAlphabetTest, encrypt_single_vertical_bigram_works) {
+  ASSERT_EQ(cipher_.encrypt(Alphabet::from_string("af")), Alphabet::from_string("fl"));
+}
+
+TEST_F(PlayfairAlphabetTest, encrypt_single_vertical_wrapped_bigram_works) {
+  ASSERT_EQ(cipher_.encrypt(Alphabet::from_string("av")), Alphabet::from_string("fa"));
+}
