@@ -2,6 +2,8 @@
  * priptologies by nieltg, Daniel
  */
 
+#pragma once
+
 #include <string>
 
 template<typename CharT>

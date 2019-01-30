@@ -2,6 +2,8 @@
  * priptologies by nieltg, Daniel
  */
 
+#pragma once
+
 #include <stdexcept>
 
 class Alphabet {

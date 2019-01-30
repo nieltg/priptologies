@@ -2,6 +2,8 @@
  * priptologies by nieltg, Daniel
  */
 
+#pragma once
+
 #include <Cipher.h>
 
 template<typename CharT>
