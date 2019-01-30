@@ -27,3 +27,7 @@ TEST_F(PlayfairAlphabetTest, encrypt_empty_plain_text_works) {
 TEST_F(PlayfairAlphabetTest, encrypt_single_horizontal_bigram_works) {
   ASSERT_EQ(cipher_.encrypt(Alphabet::from_string("ab")), Alphabet::from_string("bc"));
 }
+
+TEST_F(PlayfairAlphabetTest, encrypt_single_horizontal_wrapped_bigram_works) {
+  ASSERT_EQ(cipher_.encrypt(Alphabet::from_string("ae")), Alphabet::from_string("ba"));
+}
