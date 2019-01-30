@@ -5,13 +5,16 @@
 #include <Cipher.h>
 
 template<typename CharT, size_t R, size_t C>
+using Tableau = std::array<std::array<CharT, C>, R>;
+
+template<typename CharT, size_t R, size_t C>
 class Playfair : Cipher<CharT> {
 protected:
-  std::basic_string<CharT> key;
+  Tableau<CharT, R, C> tableau;
 
 public:
-  Playfair(std::basic_string<CharT> _key)
-    : key(_key) {}
+  Playfair(Tableau<CharT, R, C> _tableau)
+    : tableau(_tableau) {}
 
   std::basic_string<CharT> encrypt(const std::basic_string<CharT>& plain_text) const {
     return std::basic_string<CharT>();
