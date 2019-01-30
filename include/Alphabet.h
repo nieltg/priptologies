@@ -5,6 +5,8 @@
 #include <stdexcept>
 
 class Alphabet {
+  friend struct std::hash<Alphabet>;
+
 protected:
   int8_t val;
 
@@ -64,3 +66,12 @@ public:
     return alphabet_str;
   }
 };
+
+namespace std {
+  template<>
+  struct hash<Alphabet> {
+    size_t operator()(const Alphabet& _a) const {
+      return std::hash<int8_t>()(_a.val);
+    }
+  };
+}
