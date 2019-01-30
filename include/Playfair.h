@@ -3,6 +3,7 @@
  */
 
 #include <unordered_map>
+#include <iostream>
 
 #include <Cipher.h>
 
@@ -13,12 +14,13 @@ template<typename CharT, size_t R, size_t C>
 class Playfair : Cipher<CharT> {
 protected:
   Tableau<CharT, R, C> tableau;
+  CharT substitute_ch;
 
   std::unordered_map<CharT, std::pair<ptrdiff_t, ptrdiff_t>> tableau_index;
 
 public:
-  Playfair(Tableau<CharT, R, C> _tableau)
-    : tableau(_tableau) {
+  Playfair(Tableau<CharT, R, C> _tableau, CharT _substitute_ch)
+    : tableau(_tableau), substitute_ch(_substitute_ch) {
 
     for (ptrdiff_t r = 0; r < R; ++r) {
       for (ptrdiff_t c = 0; c < C; ++c) {
@@ -33,7 +35,10 @@ public:
     for (auto it = plain_text.begin(); it != plain_text.end(); ) {
       CharT a, b;
       a = *it++;
-      b = *it++;
+      b = substitute_ch;
+      if (it != plain_text.end()) {
+        if (a != *it) b = *it++;
+      }
 
       ptrdiff_t a_r, a_c, b_r, b_c;
       auto const& a_pair = tableau_index.at(a);
@@ -66,6 +71,8 @@ public:
     for (auto it = cipher_text.begin(); it != cipher_text.end(); ) {
       CharT a, b;
       a = *it++;
+      if (it == cipher_text.end())
+        throw std::invalid_argument("not a playfair cipher-text");
       b = *it++;
 
       ptrdiff_t a_r, a_c, b_r, b_c;

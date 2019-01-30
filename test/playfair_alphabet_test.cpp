@@ -17,11 +17,19 @@ protected:
     {'V', 'W', 'X', 'Y', 'Z'}
   }};
 
-  Playfair<Alphabet, 5, 5> cipher_ = Playfair<Alphabet, 5, 5>(tableau);
+  Playfair<Alphabet, 5, 5> cipher_ = Playfair<Alphabet, 5, 5>(tableau, Alphabet('X'));
 };
 
 TEST_F(PlayfairAlphabetTest, encrypt_empty_plain_text_works) {
   ASSERT_EQ(cipher_.encrypt(Alphabet::from_string("")), Alphabet::from_string(""));
+}
+
+TEST_F(PlayfairAlphabetTest, encrypt_single_character_works) {
+  ASSERT_EQ(cipher_.encrypt(Alphabet::from_string("v")), Alphabet::from_string("wy"));
+}
+
+TEST_F(PlayfairAlphabetTest, encrypt_single_same_bigram_works) {
+  ASSERT_EQ(cipher_.encrypt(Alphabet::from_string("ww")), Alphabet::from_string("xyxy"));
 }
 
 TEST_F(PlayfairAlphabetTest, encrypt_single_horizontal_bigram_works) {
@@ -50,6 +58,10 @@ TEST_F(PlayfairAlphabetTest, encrypt_diagonal_up_bigram_works) {
 
 TEST_F(PlayfairAlphabetTest, decrypt_empty_plain_text_works) {
   ASSERT_EQ(cipher_.decrypt(Alphabet::from_string("")), Alphabet::from_string(""));
+}
+
+TEST_F(PlayfairAlphabetTest, decrypt_single_character_fails) {
+  ASSERT_THROW(cipher_.decrypt(Alphabet::from_string("v")), std::invalid_argument);
 }
 
 TEST_F(PlayfairAlphabetTest, decrypt_single_horizontal_bigram_works) {

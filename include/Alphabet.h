@@ -52,6 +52,10 @@ public:
     return _lhs.val == _rhs.val;
   }
 
+  friend bool operator!=(const Alphabet& _lhs, const Alphabet& _rhs) {
+    return _lhs.val != _rhs.val;
+  }
+
   friend bool operator<(const Alphabet& _lhs, const Alphabet& _rhs) {
     return _lhs.val < _rhs.val;
   }
